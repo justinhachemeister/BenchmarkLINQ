@@ -19,15 +19,26 @@ namespace BenchmarkLINQ
                 .Generate(500);
         }
 
-        public int AlcoholicDrinksCountLinqWhere()
+        public int AktivCountLinqWhere()
         {
             return _users.Where(x => x.Aktiv).Count();
         }
 
 
-        public int AlcoholidDrinksCountLinqCount()
+        public int AktivCountLinqCount()
         {
             return _users.Count(x => x.Aktiv);
         }
+
+        public List<string> EmratJoAktivLinqList()
+        {
+            return _users.Where(x => !x.Aktiv).Select(x => x.Emri).ToList();
+        }
+
+        public IEnumerable<string> EmratJoAktivLinqAsQueryable()
+        {
+            return _users.Where(x => !x.Aktiv).Select(x => x.Emri).AsQueryable();
+        }
     }
 }
+
